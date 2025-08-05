@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Giphy Generator</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body { font-family: sans-serif; text-align: center; margin-top: 2rem; }
+    #giphy-img { margin-top: 2rem; max-width: 90vw; max-height: 60vh; }
+    button { font-size: 1.2rem; padding: 0.5rem 1rem; }
+    #message { font-size: 1.1rem; margin-top: 2rem; color: #555; }
+  </style>
+</head>
+<body>
+  <h1>Giphy Generator</h1>
+  <button id="generate-btn">Generate giphy</button>
+  <div id="display-area">
+    <div id="message">Loading...</div>
+  </div>
+  <script>
+    const API_KEY = '52C68EA9StQIfcvY50UtDSm9QW0LG3rt'; // Public beta key, replace with your own for production
+    const WORD = 'fun';
+    const LAST_IMAGE_KEY = 'lastGiphyUrl';
+
+    const btn = document.getElementById('generate-btn');
+    const displayArea = document.getElementById('display-area');
+
+    let lastImageUrl = null;
+
+    function showImage(url) {
+      displayArea.innerHTML = `<img id="giphy-img" src="${url}" alt="Giphy image of fun" />`;
+    }
+
+    function showMessage(msg) {
+      displayArea.innerHTML = `<div id="message">${msg}</div>`;
+    }
+
+    // Load last image if available
+    function loadLastImage() {
+      lastImageUrl = localStorage.getItem(LAST_IMAGE_KEY);
+      if (lastImageUrl) {
+        showImage(lastImageUrl);
+      } else {
+        showMessage('You are the first user ever, click the button!');
+      }
+    }
+
+    // Fetch a new random 'fun' image from Giphy API
+    async function fetchGiphy() {
+      showMessage('Loading...');
+      try {
+        // Get up to 50 results to randomize
+        const res = await fetch(`https://api.giphy.com/v1/gifs/search?q=${encodeURIComponent(WORD)}&api_key=${API_KEY}&limit=50`);
+        const data = await res.json();
+        if (data.data && data.data.length > 0) {
+          // Filter out the last image if it exists
+          let gifs = data.data;
+          if (lastImageUrl) {
+            gifs = gifs.filter(gif => gif.images.original.url !== lastImageUrl);
+          }
+
+          // If no new images, use all images
+          if (gifs.length === 0) gifs = data.data;
+
+          // Pick a random gif from the available gifs
+          const gif = gifs[Math.floor(Math.random() * gifs.length)];
+          const url = gif.images.original.url;
+
+          localStorage.setItem(LAST_IMAGE_KEY, url);
+          lastImageUrl = url;
+          showImage(url);
+        } else {
+          showMessage('No images found for "fun". Try again!');
+        }
+      } catch (err) {
+        showMessage('Error fetching image. Please check your connection.');
+      }
+    }
+
+    btn.addEventListener('click', fetchGiphy);
+
+    // Initial load
+    loadLastImage();
+  </script>
+</body>
+</html>
