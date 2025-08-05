@@ -2,20 +2,94 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Giphy Generator</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Giphy Generator</title>
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:700,400&display=swap" rel="stylesheet">
   <style>
-    body { font-family: sans-serif; text-align: center; margin-top: 2rem; }
-    #giphy-img { margin-top: 2rem; max-width: 90vw; max-height: 60vh; }
-    button { font-size: 1.2rem; padding: 0.5rem 1rem; }
-    #message { font-size: 1.1rem; margin-top: 2rem; color: #555; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #f3f4f8 0%, #c9e7fa 100%);
+      font-family: 'Montserrat', Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .container {
+      background: #fff;
+      border-radius: 20px;
+      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+      padding: 40px 50px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    h1 {
+      margin-bottom: 20px;
+      font-size: 2.3rem;
+      color: #222;
+      letter-spacing: 1px;
+    }
+    #giphy-img {
+      margin-top: 2rem;
+      max-width: 90vw;
+      max-height: 60vh;
+      width: 200px;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 16px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+      margin-bottom: 30px;
+    }
+    .big-btn {
+      padding: 20px 50px;
+      font-size: 1.3rem;
+      font-weight: bold;
+      border: none;
+      border-radius: 40px;
+      background: linear-gradient(90deg, #00c6ff, #0072ff);
+      color: #fff;
+      cursor: pointer;
+      box-shadow: 0 6px 18px rgba(0,114,255,0.13);
+      transition: background 0.2s, transform 0.2s;
+      margin-top: 12px;
+    }
+    .big-btn:hover {
+      background: linear-gradient(90deg, #0072ff, #00c6ff);
+      transform: translateY(-2px) scale(1.03);
+    }
+    #message {
+      font-size: 1.1rem;
+      margin-top: 2rem;
+      color: #555;
+    }
+    @media (max-width: 600px) {
+      .container {
+        padding: 20px 8px;
+      }
+      h1 {
+        font-size: 1.35rem;
+        text-align: center;
+      }
+      #giphy-img {
+        width: 120px;
+        height: 120px;
+        margin-bottom: 18px;
+      }
+      .big-btn {
+        padding: 14px 14px;
+        font-size: 1rem;
+      }
+    }
   </style>
 </head>
 <body>
-  <h1>Giphy Generator</h1>
-  <button id="generate-btn">Generate giphy</button>
-  <div id="display-area">
-    <div id="message">Loading...</div>
+  <div class="container">
+    <h1>Giphy Generator</h1>
+    <button id="generate-btn" class="big-btn">Generate giphy</button>
+    <div id="display-area">
+      <div id="message">Loading...</div>
+    </div>
   </div>
   <script>
     const API_KEY = '52C68EA9StQIfcvY50UtDSm9QW0LG3rt'; // Public beta key, replace with your own for production
