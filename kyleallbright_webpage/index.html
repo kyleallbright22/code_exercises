@@ -1,16 +1,65 @@
-<!-- Main landing page.. -->
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
+    <meta charset="UTF-8">
     <title>Whattup!!!</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:700,400&display=swap" rel="stylesheet">
+    <style>
+      body {
+        margin: 0;
+        min-height: 100vh;
+        background: linear-gradient(135deg, #f3f4f8 0%, #c9e7fa 100%);
+        font-family: 'Montserrat', Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .container {
+        background: #fff;
+        border-radius: 20px;
+        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+        padding: 40px 50px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      h1 {
+        margin-bottom: 20px;
+        font-size: 2.3rem;
+        color: #222;
+        letter-spacing: 1px;
+      }
+      img {
+        width: 200px;
+        height: 200px;
+        object-fit: cover;
+        border-radius: 16px;
+        box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+        margin-bottom: 30px;
+      }
+      .big-btn {
+        padding: 20px 50px;
+        font-size: 1.3rem;
+        font-weight: bold;
+        border: none;
+        border-radius: 40px;
+        background: linear-gradient(90deg, #00c6ff, #0072ff);
+        color: #fff;
+        cursor: pointer;
+        box-shadow: 0 6px 18px rgba(0,114,255,0.13);
+        transition: background 0.2s, transform 0.2s;
+      }
+      .big-btn:hover {
+        background: linear-gradient(90deg, #0072ff, #00c6ff);
+        transform: translateY(-2px) scale(1.03);
+      }
+    </style>
   </head>
   <body>
-    <div align="center">
+    <div class="container">
       <h1>Welcome to Kyle Allbright's Website!</h1>
-      <img src="https://s3.amazonaws.com/kyleallbright.com/smilingMonkey.jpeg">
-      <br>
-      <!-- Create a button that leads to the giphy generator page -->
-      <button onclick="window.location.href='giphygenerator.html'">
+      <img src="https://s3.amazonaws.com/kyleallbright.com/smilingMonkey.jpeg" alt="Smiling Monkey">
+      <button class="big-btn" onclick="window.location.href='giphygenerator.html'">
         Giphy Generator
       </button>
     </div>
