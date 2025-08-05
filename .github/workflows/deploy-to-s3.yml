@@ -25,8 +25,8 @@ jobs:
 
       - name: Upload index.html to S3 (if present)
         if: ${{ hashFiles('index.html') != '' }}
-        run: aws s3 cp index.html s3://${{ secrets.S3_BUCKET_ARN }}/kyleallbright_webpage/index.html --acl public-read --region us-east-1
+        run: aws s3 cp kyleallbright_webpage/index.html s3://${{ secrets.S3_BUCKET_ARN }}/index.html --acl public-read --region us-east-1
 
       - name: Upload giphygenerator.html to S3 (if present)
         if: ${{ hashFiles('giphygenerator.html') != '' }}
-        run: aws s3 cp giphygenerator.html s3://${{ secrets.S3_BUCKET_ARN }}/kyleallbright_webpage/giphygenerator.html --acl public-read --region us-east-1
+        run: aws s3 cp kyleallbright_webpage/giphygenerator.html s3://${{ secrets.S3_BUCKET_ARN }}/giphygenerator.html --acl public-read --region us-east-1
