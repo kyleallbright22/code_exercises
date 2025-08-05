@@ -2,6 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Whattup!!</title>
     <link href="https://fonts.googleapis.com/css?family=Montserrat:700,400&display=swap" rel="stylesheet">
     <style>
@@ -52,6 +53,24 @@
       .big-btn:hover {
         background: linear-gradient(90deg, #0072ff, #00c6ff);
         transform: translateY(-2px) scale(1.03);
+      }
+      @media (max-width: 600px) {
+        .container {
+          padding: 20px 8px;
+        }
+        h1 {
+          font-size: 1.35rem;
+          text-align: center;
+        }
+        img {
+          width: 120px;
+          height: 120px;
+          margin-bottom: 18px;
+        }
+        .big-btn {
+          padding: 14px 14px;
+          font-size: 1rem;
+        }
       }
     </style>
   </head>
